@@ -11,9 +11,13 @@ class HomePage extends StatelessWidget {
         constraints: const BoxConstraints.expand(),
         decoration: const BoxDecoration(
             image: DecorationImage(
+<<<<<<< HEAD
                 image: AssetImage("assets/images/bg.jpg"),
                 fit: BoxFit.cover,
                 opacity: 0.5)),
+=======
+                image: AssetImage("assets/images/bg.jpg"), fit: BoxFit.cover)),
+>>>>>>> 920758dbffc8394e8c5523417cb676e38559a17d
         child: Scaffold(
           backgroundColor: Colors.redAccent.withOpacity(0.8),
           // Header with title

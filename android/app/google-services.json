@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "275368480384",
+    "project_id": "jimmy-s-app-demo",
+    "storage_bucket": "jimmy-s-app-demo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:275368480384:android:6fa0273842d0aca616e065",
+        "android_client_info": {
+          "package_name": "com.example.jimmys_app_demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "275368480384-ssmhqkg1ehgmsd7uhqna5qhaa11iheik.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB76HDRuM4d7uNqQze0X73IfRby58QErr4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "275368480384-ssmhqkg1ehgmsd7uhqna5qhaa11iheik.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

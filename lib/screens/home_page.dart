@@ -11,12 +11,16 @@ class HomePage extends StatelessWidget {
         constraints: const BoxConstraints.expand(),
         decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/images/cat2.jpg"),
-                fit: BoxFit.cover)),
+                image: AssetImage("assets/images/bg.jpg"),
+                fit: BoxFit.cover,
+                opacity: 0.5)),
         child: Scaffold(
+          backgroundColor: Colors.redAccent.withOpacity(0.8),
           // Header with title
           appBar: AppBar(
             title: const Text("Jimmy's App Demo"),
+            backgroundColor: Colors.red,
+            foregroundColor: Colors.black,
           ),
 
           body: Center(
@@ -24,40 +28,51 @@ class HomePage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Text("Welcome to the Jimmy's App :)"),
-              Container(
-                  margin: const EdgeInsets.all(20),
-                  child: RawMaterialButton(
-                      onPressed: () {
-                        context.read<AuthenticationService>().signOut();
-                      },
-                      child: const Text("Sign out")))
+            children: const <Widget>[
+              Text("Welcome to the Jimmy's App :)",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                  )),
             ],
           )),
+
+          // App bar at the bottom of the screen
+          bottomNavigationBar: BottomAppBar(
+            shape: const CircularNotchedRectangle(),
+            color: Colors.red,
+            child: Row(
+              children: [
+                // Log out button
+                IconButton(
+                    icon: const Icon(
+                      Icons.logout,
+                      color: Colors.black,
+                    ),
+                    onPressed: () {
+                      context.read<AuthenticationService>().signOut();
+                    }),
+
+                const Spacer(),
+
+                //Search Button
+                IconButton(
+                    icon: const Icon(Icons.search, color: Colors.black),
+                    onPressed: () {}),
+              ],
+            ),
+          ),
+
+          // Floating Action Button
+          floatingActionButton: FloatingActionButton(
+              backgroundColor: Colors.black,
+              child: const Icon(
+                Icons.shopping_cart,
+                color: Colors.red,
+              ),
+              onPressed: () {}),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
         ));
   }
-
-/*  return Scaffold(
-      // Header with title
-      appBar: AppBar(
-        title: const Text("Jimmy's App Demo"),
-      ),
-
-      body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Text("Welcome to the Jimmy's App :)"),
-          Container(
-              margin: const EdgeInsets.all(20),
-              child: RawMaterialButton(
-                  onPressed: () {
-                    context.read<AuthenticationService>().signOut();
-                  },
-                  child: const Text("Sign out")))
-        ],
-      )),
-    ); */
 }

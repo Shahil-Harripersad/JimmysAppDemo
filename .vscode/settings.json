@@ -1,6 +1,6 @@
 {
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "Dart-Code.dart-code",
   "prettier.configPath": "C:\\Users\\Admin\\Desktop\\UNI\\2022\\INFO3003A Development Project\\App\\jimmys_app_demo\\.prettierrc",
   "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[jsonc]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },

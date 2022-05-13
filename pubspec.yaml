@@ -41,6 +41,9 @@ dependencies:
   provider: ^6.0.2
   shared_preferences: ^2.0.14
 
+  getwidget: ^2.0.5
+  page_transition: ^2.0.5
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

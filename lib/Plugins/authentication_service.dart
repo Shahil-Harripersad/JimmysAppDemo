@@ -21,13 +21,18 @@ class AuthenticationService {
     }
   }
 
-  Future<String?> signUp(String email, String password) async {
-    try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      return "Signed up";
-    } on FirebaseAuthException catch (e) {
-      return e.message;
+  Future<String?> signUp(
+      String email, String password, String confirmPassword) async {
+    if (password == confirmPassword) {
+      try {
+        await _firebaseAuth.createUserWithEmailAndPassword(
+            email: email, password: password);
+        return "Signed up";
+      } on FirebaseAuthException catch (e) {
+        return e.message;
+      }
+    } else {
+      return "Passwords do not match";
     }
   }
 }

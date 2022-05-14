@@ -10,7 +10,7 @@ class CardMenuItem extends StatelessWidget {
     return Column(children: <Widget>[
       InkWell(
         onTap: () => Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => (ItemPage()))),
+            .push(MaterialPageRoute(builder: (context) => (ItemPageState()))),
         child: Card(
           margin: const EdgeInsets.all(10),
           color: Colors.white,

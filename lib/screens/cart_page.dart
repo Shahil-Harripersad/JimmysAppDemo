@@ -11,46 +11,61 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage("assets/images/bg.jpg"),
-            fit: BoxFit.cover,
-            opacity: 0.2),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.white.withOpacity(0.8),
-        appBar: AppBar(
-          title: const Text("Jimmy's App Demo"),
-          backgroundColor: Colors.red,
-          foregroundColor: Colors.black,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const HomePage()));
-            },
-            icon: const Icon(Icons.arrow_back_ios),
-          ),
+        constraints: const BoxConstraints.expand(),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("assets/images/bg.jpg"),
+              fit: BoxFit.cover,
+              opacity: 0.2),
         ),
-        body: cartList(),
-        floatingActionButton: SizedBox.fromSize(
-          size: const Size(200, 50),
-          child: FloatingActionButton.extended(
+        child: Scaffold(
+          backgroundColor: Colors.white.withOpacity(0.8),
+          appBar: AppBar(
+            title: const Text("Jimmy's App Demo"),
             backgroundColor: Colors.red,
-            label: const Text(
-              "Checkout",
-              style: TextStyle(fontSize: 20),
-            ),
             foregroundColor: Colors.black,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(50),
+            leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const HomePage()));
+              },
+              icon: const Icon(Icons.arrow_back_ios),
             ),
-            onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const CartPage())),
           ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      ),
-    );
+          body: cartList(),
+          floatingActionButton: SizedBox.fromSize(
+            size: const Size(200, 50),
+            child: FloatingActionButton.extended(
+              backgroundColor: Colors.red,
+              label: const Text(
+                "Checkout",
+                style: TextStyle(fontSize: 20),
+              ),
+              foregroundColor: Colors.black,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50),
+              ),
+              onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const CartPage())),
+            ),
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
+
+          //Code for total price at the bottom of the screen
+          bottomNavigationBar: Container(
+              height: 70,
+              decoration: BoxDecoration(
+                  color: Colors.red,
+                  border: Border.all(
+                      color: Colors.black,
+                      width: 0.5,
+                      style: BorderStyle.none)),
+              child: Center(
+                  child: Text(
+                "Total price: R100",
+                style: TextStyle(fontSize: 20, color: Colors.black),
+              ))),
+        ));
   }
 }

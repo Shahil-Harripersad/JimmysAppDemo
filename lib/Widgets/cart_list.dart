@@ -2,6 +2,7 @@ import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:jimmys_app_demo/Widgets/card_menu_item.dart';
+import 'package:jimmys_app_demo/Widgets/card_cart_item.dart';
 
 class cartList extends StatefulWidget {
   cartList({Key? key}) : super(key: key);
@@ -17,7 +18,8 @@ class _cartListState extends State<cartList> {
   Widget build(BuildContext context) {
     return ListView(
       children: const [
-        CardMenuItem(),
+        CardCartItem(),
+        CardCartItem(),
       ],
     );
   }

@@ -81,7 +81,7 @@ class ItemPage extends State<ItemPageState> {
                         ),
                         SizedBox(height: 10),
                         Text(
-                          "R45.00",
+                          "R45.00", //Need to change this to a dynamic value
                           style: TextStyle(fontSize: 20, color: Colors.black),
                         ),
                         SizedBox(height: 10),

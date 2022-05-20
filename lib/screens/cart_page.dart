@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:jimmys_app_demo/screens/home_page.dart';
 import 'package:provider/provider.dart';
+import 'package:jimmys_app_demo/Widgets/cart_list.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -31,9 +32,7 @@ class CartPage extends StatelessWidget {
             icon: const Icon(Icons.arrow_back_ios),
           ),
         ),
-        body: const Center(
-          child: Text("Welcome to the cart screen"),
-        ),
+        body: cartList(),
         floatingActionButton: SizedBox.fromSize(
           size: const Size(200, 50),
           child: FloatingActionButton.extended(

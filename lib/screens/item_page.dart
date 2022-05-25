@@ -1,9 +1,13 @@
 //import 'dart:html';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:jimmys_app_demo/Widgets/card_cart_item.dart';
 import 'package:jimmys_app_demo/screens/home_page.dart';
 import 'package:provider/provider.dart';
+import '../models/cart.dart';
+import '../Widgets/card_menu_item.dart';
 
 class ItemPageState extends StatefulWidget {
   const ItemPageState({Key? key}) : super(key: key);
@@ -16,6 +20,12 @@ class ItemPage extends State<ItemPageState> {
   //const ItemPage({Key? key}) : super(key: key);
 
   int _itemCounter = 1; //Store the number of items the user selects
+
+  int get itemPageQuantity {
+    //Getter for the number of items specified on the items page. We have to do this because it is local to this class, and we need it in the cart class
+    return _itemCounter;
+  }
+
   final _itemPrice =
       45; //Stores the price of the item. Set to 45 for testing purposes
 
@@ -39,6 +49,9 @@ class ItemPage extends State<ItemPageState> {
 
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<Cart>(
+        context); //Basically creating an instance of the cart object so that we can use its methods in this class
+
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
@@ -162,7 +175,15 @@ class ItemPage extends State<ItemPageState> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50),
             ),
-            onPressed: () {},
+            onPressed: () {
+              cart.addItem(
+                  CardMenuItem().pdtName,
+                  _itemCounter,
+                  CardMenuItem()
+                      .pdtPrice); //Creating a new cart item with the same values as the item on the item page
+
+              print(cart.items);
+            },
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

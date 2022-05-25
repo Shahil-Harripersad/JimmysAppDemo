@@ -7,6 +7,7 @@ import 'package:jimmys_app_demo/screens/signin_page.dart';
 import 'package:jimmys_app_demo/screens/signup_page.dart';
 import 'package:provider/provider.dart';
 import 'package:jimmys_app_demo/Plugins/material_color.dart';
+import 'models/cart.dart';
 
 // This runs the app and initializes Firebase
 Future<void> main() async {
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
           create: (context) =>
               context.read<AuthenticationService>().authStateChanges,
           initialData: null,
-        )
+        ),
+        ChangeNotifierProvider.value(value: Cart())
       ],
       child: MaterialApp(
         title: 'FlutterDemo', // change header title

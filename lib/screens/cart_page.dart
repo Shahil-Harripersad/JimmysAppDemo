@@ -4,12 +4,16 @@ import 'package:getwidget/getwidget.dart';
 import 'package:jimmys_app_demo/screens/home_page.dart';
 import 'package:provider/provider.dart';
 import 'package:jimmys_app_demo/Widgets/cart_list.dart';
+import '../models/cart.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
 
+  static const routeName = '/cart'; //The path to the cart screen
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<Cart>(context);
+
     return Container(
         constraints: const BoxConstraints.expand(),
         decoration: const BoxDecoration(
@@ -32,7 +36,11 @@ class CartPage extends StatelessWidget {
               icon: const Icon(Icons.arrow_back_ios),
             ),
           ),
-          body: cartList(),
+          body: Column(
+            children: [
+              Expanded(child: cartList()),
+            ],
+          ),
           floatingActionButton: SizedBox.fromSize(
             size: const Size(200, 50),
             child: FloatingActionButton.extended(
@@ -63,7 +71,7 @@ class CartPage extends StatelessWidget {
                       style: BorderStyle.none)),
               child: Center(
                   child: Text(
-                "Total price: R100",
+                "Total price: R0",
                 style: TextStyle(fontSize: 20, color: Colors.black),
               ))),
         ));

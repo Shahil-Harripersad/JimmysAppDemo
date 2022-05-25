@@ -5,6 +5,11 @@ import 'package:jimmys_app_demo/screens/item_page.dart';
 class CardMenuItem extends StatelessWidget {
   const CardMenuItem({Key? key}) : super(key: key);
 
+  //Need to create a constructor for these cards
+  final String pdtId = "1";
+  final String pdtName = "Chicken";
+  final double pdtPrice = 45.00;
+
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
@@ -33,13 +38,13 @@ class CardMenuItem extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
+              children: [
                 Text(
-                  "Chickin",
+                  "${pdtName}",
                   style: TextStyle(color: Colors.black, fontSize: 25),
                 ),
                 Text(
-                  "R49.00",
+                  "R${pdtPrice.toString()}",
                   style: TextStyle(color: Colors.black, fontSize: 18),
                 ),
               ],

@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:jimmys_app_demo/screens/item_page.dart';
+import 'package:provider/provider.dart';
+import '../models/cart.dart';
+import '../screens/item_page.dart';
 
 class CardCartItem extends StatelessWidget {
-  const CardCartItem({Key? key}) : super(key: key);
+  final String id;
+  final double price;
+  final int quantity;
+  final String name;
+
+  const CardCartItem(this.id, this.price, this.quantity, this.name);
 
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<Cart>(context);
+
     return Column(children: <Widget>[
       InkWell(
         onTap: () => Navigator.of(context)
@@ -33,24 +43,27 @@ class CardCartItem extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
+              children: [
                 Text(
-                  "Chickin",
+                  name,
                   style: TextStyle(color: Colors.black, fontSize: 25),
                 ),
                 Text(
-                  "R49.00",
+                  "R${price}",
                   style: TextStyle(color: Colors.black, fontSize: 18),
                 ),
               ],
             ),
             const SizedBox(width: 30),
-            Text("x2", style: TextStyle(color: Colors.black, fontSize: 20)),
+            Text("x" + quantity.toString(),
+                style: TextStyle(color: Colors.black, fontSize: 20)),
             const SizedBox(width: 20),
             Container(
               alignment: Alignment.centerRight,
               child: GFIconButton(
-                onPressed: () {},
+                onPressed: () {
+                  cart.removeItem(this.id); //Id hard coded
+                },
                 icon: const Icon(
                   Icons.delete_outline,
                   color: Colors.black,

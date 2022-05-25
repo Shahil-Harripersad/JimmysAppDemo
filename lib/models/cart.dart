@@ -64,4 +64,14 @@ class Cart with ChangeNotifier {
     _items = [];
     notifyListeners();
   }
+
+  double calcCartTotal() {
+    //Calculates and returns the total price of the entire cart
+    double cartTotal = 0;
+
+    cartTotal = _items.fold(
+        cartTotal, (sum, element) => sum + (element.price * element.quantity));
+
+    return cartTotal;
+  }
 }

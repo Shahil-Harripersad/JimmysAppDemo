@@ -14,6 +14,9 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
 
+    double cartTotal =
+        cart.calcCartTotal(); //Stores the total price of the cart
+
     return Container(
         constraints: const BoxConstraints.expand(),
         decoration: const BoxDecoration(
@@ -71,7 +74,7 @@ class CartPage extends StatelessWidget {
                       style: BorderStyle.none)),
               child: Center(
                   child: Text(
-                "Total price: R0",
+                "Total price: R${cartTotal}",
                 style: TextStyle(fontSize: 20, color: Colors.black),
               ))),
         ));

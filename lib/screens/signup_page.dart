@@ -2,8 +2,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:jimmys_app_demo/Plugins/authentication_service.dart';
+import 'package:jimmys_app_demo/models/customers.dart';
+import 'package:jimmys_app_demo/screens/item_page.dart';
 import 'package:jimmys_app_demo/screens/signin_page.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:jimmys_app_demo/models/customers.dart';
 
 class SignUpPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -11,6 +15,7 @@ class SignUpPage extends StatelessWidget {
   final TextEditingController confirmPasswordController =
       TextEditingController();
 
+  DatabaseReference _ref = FirebaseDatabase.instance.ref().child('Customers');
   // Widget contains entire home page
   @override
   Widget build(BuildContext context) {
@@ -127,6 +132,7 @@ class SignUpPage extends StatelessWidget {
                 ),
               ),
 
+//Sing up initiated using button
               GFButton(
                 onPressed: () {
                   context.read<AuthenticationService>().signUp(
@@ -134,6 +140,9 @@ class SignUpPage extends StatelessWidget {
                         passwordController.text.trim(),
                         confirmPasswordController.text.trim(),
                       );
+                  saveCustomer();
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => (ItemPageState())));
                 }, // onPressed
                 shape: GFButtonShape.pills,
                 color: Colors.black,
@@ -159,5 +168,16 @@ class SignUpPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+//Adding customer to the database
+  void saveCustomer() {
+    String email = emailController.text;
+    String password = passwordController.text;
+
+    // creating a customer object using the customer model
+    Customers customer = Customers(email: email, password: password);
+
+    _ref.push().set(customer.toJson()); //the actual inserting of a new record
   }
 }

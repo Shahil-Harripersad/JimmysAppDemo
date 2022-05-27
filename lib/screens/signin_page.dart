@@ -6,6 +6,7 @@ import 'package:jimmys_app_demo/screens/signup_page.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
+import 'order_confiramtion.dart';
 
 class SignInPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -125,6 +126,8 @@ class SignInPage extends StatelessWidget {
                 shape: GFButtonShape.pills,
                 size: GFSize.LARGE,
               ),
+
+              // ConfirmOrder()
             ],
           ),
         ),

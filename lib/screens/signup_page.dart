@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:jimmys_app_demo/Plugins/authentication_service.dart';
 import 'package:jimmys_app_demo/models/customers.dart';
+import 'package:jimmys_app_demo/screens/home_page.dart';
 import 'package:jimmys_app_demo/screens/item_page.dart';
 import 'package:jimmys_app_demo/screens/signin_page.dart';
 import 'package:provider/provider.dart';
@@ -142,7 +143,7 @@ class SignUpPage extends StatelessWidget {
                       );
                   saveCustomer();
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => (ItemPageState())));
+                      builder: (context) => (const HomePage())));
                 }, // onPressed
                 shape: GFButtonShape.pills,
                 color: Colors.black,
@@ -154,6 +155,7 @@ class SignUpPage extends StatelessWidget {
               const Text("Already have an account?",
                   style: TextStyle(color: Colors.black)),
               const Padding(padding: EdgeInsets.all(5)),
+
               GFButton(
                 onPressed: () => Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => SignInPage())),

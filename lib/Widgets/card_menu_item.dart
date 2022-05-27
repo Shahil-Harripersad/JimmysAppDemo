@@ -6,9 +6,12 @@ class CardMenuItem extends StatelessWidget {
   const CardMenuItem({Key? key}) : super(key: key);
 
   //Need to create a constructor for these cards
-  final String pdtId = "1";
-  final String pdtName = "Chicken";
-  final double pdtPrice = 45.00;
+
+  final String pdtId = "1"; //To be assinged by the database
+  final String pdtName = "Chicken"; //To be assinged by the database
+  final double pdtPrice = 45.00; //To be assinged by the database
+  final String description =
+      "Jimmy's style chicken prepared with a sauce of your choice."; //To be assinged by the database
 
   @override
   Widget build(BuildContext context) {

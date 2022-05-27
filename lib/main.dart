@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:jimmys_app_demo/Plugins/authentication_service.dart';
+import 'package:jimmys_app_demo/models/orders.dart';
+import 'package:jimmys_app_demo/screens/cart_page.dart';
 import 'package:jimmys_app_demo/screens/home_page.dart';
 import 'package:jimmys_app_demo/screens/signin_page.dart';
 import 'package:jimmys_app_demo/screens/signup_page.dart';
@@ -35,7 +37,9 @@ class MyApp extends StatelessWidget {
               context.read<AuthenticationService>().authStateChanges,
           initialData: null,
         ),
-        ChangeNotifierProvider.value(value: Cart())
+        ChangeNotifierProvider.value(value: Cart()),
+        ChangeNotifierProvider.value(value: Orders()),
+        //   Provider<CartItem> //   ChangeNotifierProvider.value(value: CartPage()),
       ],
       child: MaterialApp(
         title: 'FlutterDemo', // change header title

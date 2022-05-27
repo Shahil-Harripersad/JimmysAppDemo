@@ -10,11 +10,14 @@ class CartItem {
   final int quantity;
   final double price;
 
+  //Quant x price from item page
+  final double combinedPrice;
   CartItem(
       {required this.id,
       required this.name,
       required this.quantity,
-      required this.price});
+      required this.price,
+      required this.combinedPrice});
 
   int get cartItemQuantity {
     return quantity;
@@ -42,14 +45,15 @@ class Cart with ChangeNotifier {
     return _items.length;
   }
 
-  void addItem(String name, int quantity, double price) {
+  void addItem(String name, int quantity, double price, double combinedPrice) {
     //Method to add items to the cart
     //Sets the parameters of each cart item to the parameters of the method (which will come from another class)
     _items.add(CartItem(
         id: DateTime.now().millisecondsSinceEpoch.toString(),
         name: name,
         quantity: quantity,
-        price: price));
+        price: price,
+        combinedPrice: combinedPrice));
   }
 
   void removeItem(String id) {
@@ -65,12 +69,15 @@ class Cart with ChangeNotifier {
     notifyListeners();
   }
 
-  double calcCartTotal() {
+  double get calcCartTotal {
     //Calculates and returns the total price of the entire cart
     double cartTotal = 0;
 
     cartTotal = _items.fold(
-        cartTotal, (sum, element) => sum + (element.price * element.quantity));
+        cartTotal,
+        (sum, element) =>
+            sum +
+            (element.combinedPrice)); //adding total cost of each group of items
 
     return cartTotal;
   }

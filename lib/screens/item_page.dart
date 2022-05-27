@@ -1,5 +1,7 @@
 //import 'dart:html';
 
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
@@ -8,6 +10,7 @@ import 'package:jimmys_app_demo/screens/home_page.dart';
 import 'package:provider/provider.dart';
 import '../models/cart.dart';
 import '../Widgets/card_menu_item.dart';
+import 'package:jimmys_app_demo/models/orders.dart';
 
 class ItemPageState extends StatefulWidget {
   const ItemPageState({Key? key}) : super(key: key);
@@ -26,8 +29,10 @@ class ItemPage extends State<ItemPageState> {
     return _itemCounter;
   }
 
-  final _itemPrice =
-      45; //Stores the price of the item. Set to 45 for testing purposes
+  //Making an object of the CardMenu Item class which will be used to reference its contents
+  final CardMenuItem itemDetails = CardMenuItem();
+
+  //Stores the price of the item. Set to 45 for testing purposes
 
   void _incrementCounter() {
     //Increments the item counter variable
@@ -49,8 +54,14 @@ class ItemPage extends State<ItemPageState> {
 
   @override
   Widget build(BuildContext context) {
-    final cart = Provider.of<Cart>(
-        context); //Basically creating an instance of the cart object so that we can use its methods in this class
+    //the price variable for the items page gets price info through the CardMenuItem object
+
+    final _itemName = itemDetails.pdtName;
+    final _itemPrice = itemDetails.pdtPrice;
+    final _itemDescription = itemDetails.description;
+    final combinedPrice = _itemCounter * _itemPrice;
+    final cart = Provider.of<Cart>(context);
+    //Basically creating an instance of the cart object so that we can use its methods in this class
 
     return Container(
       decoration: const BoxDecoration(
@@ -87,20 +98,24 @@ class ItemPage extends State<ItemPageState> {
                     flex: 7,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const <Widget>[
+                      children: <Widget>[
                         Text(
-                          "Chickin",
-                          style: TextStyle(fontSize: 40, color: Colors.black),
+                          _itemName, //setting the display name of the item
+                          style: const TextStyle(
+                              fontSize: 40, color: Colors.black),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
+                        Container(
+                            child: Text(
+                          _itemPrice
+                              .toString(), // Setting display price of item
+                          style: const TextStyle(
+                              fontSize: 20, color: Colors.black),
+                        )),
+                        const SizedBox(height: 10),
                         Text(
-                          "R45.00", //Need to change this to a dynamic value
-                          style: TextStyle(fontSize: 20, color: Colors.black),
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          "Jimmy's style chicken prepared with a sauce of your choice.",
-                          style: TextStyle(
+                          _itemDescription, //Setting the description of the item
+                          style: const TextStyle(
                               fontSize: 15,
                               color: Colors.black,
                               fontStyle: FontStyle.italic),
@@ -176,11 +191,8 @@ class ItemPage extends State<ItemPageState> {
               borderRadius: BorderRadius.circular(50),
             ),
             onPressed: () {
-              cart.addItem(
-                  CardMenuItem().pdtName,
-                  _itemCounter,
-                  CardMenuItem()
-                      .pdtPrice); //Creating a new cart item with the same values as the item on the item page
+              cart.addItem(_itemName, _itemCounter, _itemPrice,
+                  combinedPrice); //Creating a new cart item with the same values as the item on the item page
 
               print(cart.items);
             },

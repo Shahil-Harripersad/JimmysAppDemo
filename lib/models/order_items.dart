@@ -1,19 +1,23 @@
+import 'package:jimmys_app_demo/models/cart.dart';
+import 'package:flutter/material.dart';
+import 'package:firebase_database/firebase_database.dart';
+
 class OrderItem {
-  final String orderNo;
-  final String itemNo;
-  final double unitCost;
-  final int quantity;
+  final String id;
+  final double totalAmount;
+  final List<CartItem> products;
+  final DateTime dateTime;
 
-  const OrderItem(
-      {required this.orderNo,
-      required this.itemNo,
-      required this.unitCost,
-      required this.quantity});
+  OrderItem(
+      {required this.id,
+      required this.totalAmount,
+      required this.products,
+      required this.dateTime});
 
-  Map<String, dynamic> tojSon() => {
-        'orderNo': orderNo,
-        'itemNo': itemNo,
-        'unitCost': unitCost,
-        'quantity': quantity
+  Map<String, dynamic> toJson() => {
+        'id': dateTime,
+        'totalAmount': totalAmount,
+        'dateTime': dateTime,
+        'products': products
       };
 }

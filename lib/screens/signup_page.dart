@@ -176,9 +176,10 @@ class SignUpPage extends StatelessWidget {
   void saveCustomer() {
     String email = emailController.text;
     String password = passwordController.text;
-
+    int points = 0;
     // creating a customer object using the customer model
-    Customers customer = Customers(email: email, password: password);
+    Customers customer =
+        Customers(email: email, password: password, points: points);
 
     _ref.push().set(customer.toJson()); //the actual inserting of a new record
   }

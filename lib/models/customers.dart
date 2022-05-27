@@ -1,9 +1,12 @@
 class Customers {
   final String email;
   final String password;
+  final int points;
 
-  const Customers({required this.email, required this.password});
+  const Customers(
+      {required this.email, required this.password, required this.points});
 
   //Making customer very accessible using firebase
-  Map<String, String> toJson() => {'email': email, 'password': password};
+  Map<String, dynamic> toJson() =>
+      {'email': email, 'password': password, 'points': points};
 }

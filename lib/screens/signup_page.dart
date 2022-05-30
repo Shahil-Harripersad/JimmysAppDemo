@@ -142,8 +142,8 @@ class SignUpPage extends StatelessWidget {
                         confirmPasswordController.text.trim(),
                       );
                   saveCustomer();
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => (const HomePage())));
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => (SignInPage())));
                 }, // onPressed
                 shape: GFButtonShape.pills,
                 color: Colors.black,

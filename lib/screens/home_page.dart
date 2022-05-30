@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:jimmys_app_demo/Plugins/authentication_service.dart';
 import 'package:jimmys_app_demo/screens/cart_page.dart';
+import 'package:jimmys_app_demo/screens/signin_page.dart';
 import 'package:provider/provider.dart';
 import 'package:jimmys_app_demo/screens/item_page.dart';
 import 'package:jimmys_app_demo/Widgets/card_menu_item.dart';
@@ -33,6 +34,8 @@ class HomePage extends StatelessWidget {
           leading: IconButton(
             onPressed: () {
               context.read<AuthenticationService>().signOut();
+              () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => (SignInPage())));
             },
             icon: const Icon(Icons.fastfood),
           ),

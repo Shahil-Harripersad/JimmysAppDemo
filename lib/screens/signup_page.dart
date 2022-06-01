@@ -10,14 +10,35 @@ import 'package:provider/provider.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:jimmys_app_demo/models/customers.dart';
 
+import '../utils/show_snack_bar.dart';
+
 class SignUpPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
+  bool _passwordVisible = false;
 
-  DatabaseReference _ref = FirebaseDatabase.instance.ref().child('Customers');
-  // Widget contains entire home page
+  void verifySignUp(String email, String password, String confirmPassword,
+      BuildContext context) {
+    if (email.isEmpty) {
+      showSnackBar(context, 'Enter your email');
+    } else if (password.isEmpty) {
+      showSnackBar(context, 'Enter your password');
+    } else if (password.isEmpty) {
+      showSnackBar(context, 'Confirm your password');
+    } else if (password != confirmPassword) {
+      showSnackBar(context, 'Password do not match');
+    } else {
+      context.read<AuthenticationService>().signUp(email, password, context);
+    }
+  } // Widget contains entire home page
+
+  @override
+  void initState() {
+    _passwordVisible = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     // Layout containing screen
@@ -50,6 +71,7 @@ class SignUpPage extends StatelessWidget {
 
               // email field
               TextFormField(
+                style: const TextStyle(color: Colors.black),
                 controller: emailController,
                 decoration: InputDecoration(
                   hintText: "Email",
@@ -80,7 +102,9 @@ class SignUpPage extends StatelessWidget {
                   top: 10,
                 ),
                 child: TextFormField(
+                  style: const TextStyle(color: Colors.black),
                   controller: passwordController,
+                  obscureText: !_passwordVisible,
                   decoration: InputDecoration(
                     hintText: "Password",
                     hintStyle: const TextStyle(color: Colors.black),
@@ -108,7 +132,9 @@ class SignUpPage extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.only(bottom: 10, top: 10),
                 child: TextFormField(
+                  style: const TextStyle(color: Colors.black),
                   controller: confirmPasswordController,
+                  obscureText: true,
                   decoration: InputDecoration(
                     hintText: "Confirm Password",
                     hintStyle: const TextStyle(color: Colors.black),
@@ -136,15 +162,13 @@ class SignUpPage extends StatelessWidget {
 //Sing up initiated using button
               GFButton(
                 onPressed: () {
-                  context.read<AuthenticationService>().signUp(
-                        emailController.text.trim(),
-                        passwordController.text.trim(),
-                        confirmPasswordController.text.trim(),
-                      );
-                  saveCustomer();
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => (SignInPage())));
-                }, // onPressed
+                  verifySignUp(
+                    emailController.text.trim(),
+                    passwordController.text.trim(),
+                    confirmPasswordController.text.trim(),
+                    context,
+                  );
+                },
                 shape: GFButtonShape.pills,
                 color: Colors.black,
                 text: "Sign up",
@@ -170,17 +194,5 @@ class SignUpPage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-//Adding customer to the database
-  void saveCustomer() {
-    String email = emailController.text;
-    String password = passwordController.text;
-    int points = 0;
-    // creating a customer object using the customer model
-    Customers customer =
-        Customers(email: email, password: password, points: points);
-
-    _ref.push().set(customer.toJson()); //the actual inserting of a new record
   }
 }

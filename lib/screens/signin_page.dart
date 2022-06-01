@@ -6,11 +6,22 @@ import 'package:jimmys_app_demo/screens/signup_page.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:getwidget/getwidget.dart';
+import '../utils/show_snack_bar.dart';
 import 'order_confiramtion.dart';
 
 class SignInPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+  void verifySignIn(String email, String password, BuildContext context) {
+    if (email.isEmpty) {
+      showSnackBar(context, 'Enter your email');
+    } else if (password.isEmpty) {
+      showSnackBar(context, 'Enter your password');
+    } else {
+      context.read<AuthenticationService>().signIn(email, password, context);
+    }
+  }
 
   // Widget contains entire home page
   @override
@@ -45,6 +56,7 @@ class SignInPage extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.only(left: 20, right: 20),
                 child: TextFormField(
+                  style: const TextStyle(color: Colors.black),
                   controller: emailController,
                   decoration: InputDecoration(
                     hintText: "Email",
@@ -75,7 +87,9 @@ class SignInPage extends StatelessWidget {
                 margin: const EdgeInsets.only(
                     left: 20, right: 20, top: 10, bottom: 10),
                 child: TextFormField(
+                  style: const TextStyle(color: Colors.black),
                   controller: passwordController,
+                  obscureText: true,
                   decoration: InputDecoration(
                     hintText: "Password",
                     hintStyle: const TextStyle(color: Colors.black),
@@ -102,10 +116,11 @@ class SignInPage extends StatelessWidget {
 
               GFButton(
                 onPressed: () {
-                  context.read<AuthenticationService>().signIn(
-                        emailController.text.trim(),
-                        passwordController.text.trim(),
-                      );
+                  verifySignIn(
+                    emailController.text.trim(),
+                    passwordController.text.trim(),
+                    context,
+                  );
                 }, // onPressed
                 shape: GFButtonShape.pills,
                 color: Colors.black,
@@ -118,8 +133,10 @@ class SignInPage extends StatelessWidget {
                   style: TextStyle(color: Colors.black)),
               const Padding(padding: EdgeInsets.all(5)),
               GFButton(
-                onPressed: () => Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => (SignUpPage()))),
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => (SignUpPage())));
+                },
                 text: "Sign Up",
                 borderSide: const BorderSide(color: Colors.black),
                 color: Colors.transparent,

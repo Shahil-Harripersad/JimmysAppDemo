@@ -17,7 +17,6 @@ class SignUpPage extends StatelessWidget {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
-  bool _passwordVisible = false;
 
   void verifySignUp(String email, String password, String confirmPassword,
       BuildContext context) {
@@ -33,11 +32,6 @@ class SignUpPage extends StatelessWidget {
       context.read<AuthenticationService>().signUp(email, password, context);
     }
   } // Widget contains entire home page
-
-  @override
-  void initState() {
-    _passwordVisible = false;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +98,7 @@ class SignUpPage extends StatelessWidget {
                 child: TextFormField(
                   style: const TextStyle(color: Colors.black),
                   controller: passwordController,
-                  obscureText: !_passwordVisible,
+                  obscureText: true,
                   decoration: InputDecoration(
                     hintText: "Password",
                     hintStyle: const TextStyle(color: Colors.black),

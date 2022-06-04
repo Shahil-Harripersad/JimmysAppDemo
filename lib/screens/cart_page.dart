@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:jimmys_app_demo/models/orders.dart';
@@ -20,7 +21,6 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   final Orders newOrder = Orders();
 
-  @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
 

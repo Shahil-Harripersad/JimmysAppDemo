@@ -14,13 +14,18 @@ class AuthenticationService {
   DatabaseReference _ref = FirebaseDatabase.instance.ref().child('Customers');
 
   //Adding customer to the database
-  void saveCustomer(email, password) {
+  Future<void> saveCustomer(email, password) async {
     int points = 0;
-    // creating a customer object using the customer model
-    Customers customer =
-        Customers(email: email, password: password, points: points);
+    User? myUser = FirebaseAuth.instance.currentUser;
+    if (myUser != null) {
+      Customers customer = Customers(
+          uid: myUser.uid, email: email, password: password, points: points);
 
-    _ref.push().set(customer.toJson()); //the actual inserting of a new record
+      _ref.push().set(customer.toJson()); //the actual inserting of a new record
+      // creating a customer object using the customer model
+      //  Customers customer =
+      //     Customers(uid: ,email: email, password: password, points: points);
+    }
   }
 
   Future<void> signOut() async {

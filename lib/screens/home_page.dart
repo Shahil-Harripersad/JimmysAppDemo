@@ -7,6 +7,8 @@ import 'package:jimmys_app_demo/screens/signin_page.dart';
 import 'package:provider/provider.dart';
 import 'package:jimmys_app_demo/screens/item_page.dart';
 import 'package:jimmys_app_demo/Widgets/card_menu_item.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../screens/reports_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -102,8 +104,10 @@ class HomePage extends StatelessWidget {
 
               //Search Button
               IconButton(
-                  icon: const Icon(Icons.search, color: Colors.black),
-                  onPressed: () {}),
+                  icon: const Icon(FontAwesomeIcons.chartLine,
+                      color: Colors.black),
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const ReportsPage()))),
             ],
           ),
         ),

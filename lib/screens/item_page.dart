@@ -193,8 +193,6 @@ class ItemPage extends State<ItemPageState> {
             onPressed: () {
               cart.addItem(_itemName, _itemCounter, _itemPrice,
                   combinedPrice); //Creating a new cart item with the same values as the item on the item page
-
-              print(cart.items);
             },
           ),
         ),

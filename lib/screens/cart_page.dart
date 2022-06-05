@@ -58,6 +58,7 @@ class _CartPageState extends State<CartPage> {
             ],
           ),
           floatingActionButton: SizedBox.fromSize(
+            // ------- This is the checkout button
             size: const Size(200, 50),
             child: FloatingActionButton.extended(
               backgroundColor: Colors.red,
@@ -70,6 +71,7 @@ class _CartPageState extends State<CartPage> {
                 borderRadius: BorderRadius.circular(50),
               ),
               onPressed: () => showDialog(
+                // ------------ This is the dialog displayed onPress()
                 context: context,
                 builder: (context) => Dialog(
                     backgroundColor: Colors.transparent,
@@ -89,6 +91,7 @@ class _CartPageState extends State<CartPage> {
                               style: TextStyle(fontSize: 28),
                               textAlign: TextAlign.center),
                         ),
+
                         Container(
                             child: Text(
                           "Total: R" + cartTotal.toString(),
@@ -97,20 +100,17 @@ class _CartPageState extends State<CartPage> {
 
                         Container(
                             margin: const EdgeInsets.only(top: 150),
-                            child: CheckoutButton(cart: cart))
-
-                        //    Container(
-                        //      margin: const EdgeInsets.only(
-                        //         left: 20, right: 20, top: 130, bottom: 10),
-                        //   child: ElevatedButton(
-                        ///     child: Text('Place Order'), onPressed: () =>
-                        //=> newOrder.addOrder(cartPorducts, totalAmount),
-                        //          ),
-                        //   )
-                        // GFButton(onPressed: (() => Text('Finally')))
+                            child: CheckoutButton(
+                                cart:
+                                    cart)) // ------------ this is actually the confirm order button widget
                       ],
                     )),
-              ),
+                //------------------------------------------------
+              ).then((exit) {
+                if (exit == null) return;
+
+                if (exit) {}
+              }), //--------------------------------------------------
             ),
           ),
           floatingActionButtonLocation:

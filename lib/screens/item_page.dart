@@ -181,20 +181,29 @@ class ItemPage extends State<ItemPageState> {
         floatingActionButton: SizedBox.fromSize(
           size: const Size(200, 50),
           child: FloatingActionButton.extended(
-            backgroundColor: Colors.red,
-            label: const Text(
-              "Add to cart",
-              style: TextStyle(fontSize: 20),
-            ),
-            foregroundColor: Colors.black,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(50),
-            ),
-            onPressed: () {
-              cart.addItem(_itemName, _itemCounter, _itemPrice,
-                  combinedPrice); //Creating a new cart item with the same values as the item on the item page
-            },
-          ),
+              backgroundColor: Colors.red,
+              label: const Text(
+                "Add to cart",
+                style: TextStyle(fontSize: 20),
+              ),
+              foregroundColor: Colors.black,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50),
+              ),
+              onPressed: () {
+                cart.addItem(_itemName, _itemCounter, _itemPrice,
+                    combinedPrice); //Creating a new cart item with the same values as the item on the item page
+
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    duration: Duration(seconds: 2),
+                    content: Text(
+                      "Item added to cart",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                );
+              }),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
 

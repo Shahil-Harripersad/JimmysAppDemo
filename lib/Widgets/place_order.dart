@@ -88,58 +88,81 @@ class _PlaceOrderState extends State<PlaceOrder> {
 
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/images/bg.jpg"),
-              fit: BoxFit.cover,
-              opacity: 0.2)),
-      child: Dialog(
-          backgroundColor: Colors.transparent,
-          insetPadding: const EdgeInsets.all(10),
-          child: Stack(
-            alignment: Alignment.center,
-            children: <Widget>[
-              //----------------------------------------------------------------
-              Container(
-                width: double.infinity,
-                height: 280,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: const Color.fromARGB(255, 187, 47, 37)),
-                padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
-                child: const Text("Your Order Has Been Placed!",
-                    style: TextStyle(fontSize: 29, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center),
-              ),
-              //----------------------------------------------------------------
-              Container(
-                //width: Double.infintiy,
-                padding: const EdgeInsets.all(10),
-                margin: const EdgeInsets.only(top: 5),
-                child: Text(
-                  "Order Number: $newOrderNum",
-                  style: const TextStyle(fontSize: 29),
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/images/bg.jpg"),
+                fit: BoxFit.cover,
+                opacity: 0.2)),
+        child: (newOrderNum ==
+                "") // ===========> if newOrderNum = "" is true diplay the following widget
+            ? Dialog(
+                backgroundColor: Colors.transparent,
+                insetPadding: const EdgeInsets.all(10),
+                child:
+                    //----------------------------------------------------------------
+                    Container(
+                  width: double.infinity,
+                  height: 280,
+                  // margin: const EdgeInsets.only(top: 470),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: const Color.fromARGB(255, 187, 47, 37)),
+                  padding: const EdgeInsets.fromLTRB(20, 120, 20, 20),
+                  child: const Text("Placing order...",
+                      style:
+                          TextStyle(fontSize: 29, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center),
                 ),
-              ),
-              //----------------------------------------------------------------
-              Container(
-                  width: 100,
-                  margin: const EdgeInsets.only(top: 150),
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        onPrimary: Colors.black,
-                        padding: const EdgeInsets.all(10),
+              )
+            : // ===========> Else swap widget to the following widget
+            Dialog(
+                backgroundColor: Colors.transparent,
+                insetPadding: const EdgeInsets.all(10),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: <Widget>[
+                    //----------------------------------------------------------------
+                    Container(
+                      width: double.infinity,
+                      height: 280,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: const Color.fromARGB(255, 187, 47, 37)),
+                      padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
+                      child: const Text("Your Order Has Been Placed!",
+                          style: TextStyle(
+                              fontSize: 29, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center),
+                    ),
+                    //----------------------------------------------------------------
+                    Container(
+                      //width: Double.infintiy,
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.only(top: 5),
+                      child: Text(
+                        "Order Number: $newOrderNum",
+                        style: const TextStyle(fontSize: 29),
                       ),
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => (const HomePage())));
-                      },
-                      child: const Text("Ok",
-                          style: TextStyle(fontSize: 28, color: Colors.red))))
-              //----------------------------------------------------------------
-            ],
-          )),
-    );
+                    ),
+                    //----------------------------------------------------------------
+                    Container(
+                        width: 100,
+                        margin: const EdgeInsets.only(top: 150),
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              onPrimary: Colors.black,
+                              padding: const EdgeInsets.all(10),
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => (const HomePage())));
+                            },
+                            child: const Text("Ok",
+                                style: TextStyle(
+                                    fontSize: 28, color: Colors.red))))
+                    //----------------------------------------------------------------
+                  ],
+                )));
   }
 }
